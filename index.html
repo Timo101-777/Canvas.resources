@@ -144,8 +144,14 @@
 
     // Automatically load menu selections when webpage boots up
     window.onload = function() {
-        fetch(`${WEB_APP_URL}?action=getFolders`)
-            .then(response => response.json())
+        const targetUrl = new URL(WEB_APP_URL);
+        targetUrl.searchParams.append("action", "getFolders");
+
+        fetch(targetUrl)
+            .then(response => {
+                if (!response.ok) throw new Error('Network error');
+                return response.json();
+            })
             .then(folders => populateDropdown(folders))
             .catch(error => {
                 console.error("Error loading categories:", error);
