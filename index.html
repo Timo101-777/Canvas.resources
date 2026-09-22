@@ -5,6 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resource Library</title>
     <style>
+        /* Real-time Search Input Wrapper Layout */
+        .search-wrapper {
+            margin-bottom: 24px;
+            position: relative;
+        }
+        .search-input {
+            width: 100%;
+            box-sizing: border-box;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 14px 16px 14px 44px; /* Space on left for magnifier icon */
+            font-size: 15px;
+            border-radius: 12px;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+        .search-input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15);
+        }
+        /* Magnifying Glass Icon Anchor Graphic */
+        .search-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            pointer-events: none;
+            width: 16px;
+            height: 16px;
+        }
         :root {
             --bg-color: #0f172a;
             --card-bg: #1e293b;
