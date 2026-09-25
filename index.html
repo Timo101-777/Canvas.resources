@@ -199,7 +199,7 @@
 
 <script>
     // Paste your deployed Google Web App URL here
-    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzT-pTzz-Nn2_trhgD6inb_0wlvIo9nC3psRy66IUYoWnzr9ON3UyHQG98suIpOOEOPUw/exec";
+    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxbFtnOy1ihJ1nTEj2gdQmjzPycEPhKdPIOLlJWS5aBuz8mhJN92vaiEW6sqJ8pcHQRxQ/exec";
 
     // Automatically load menu selections when webpage boots up
     window.onload = function() {
@@ -223,22 +223,26 @@
         const select = document.getElementById('folderSelect');
         select.innerHTML = '<option value="" disabled selected>-- Select a Folder --</option>';
         
-        folders.forEach(folderName => {
+        folders.forEach(folder => {
             const option = document.createElement('option');
-            option.value = folderName;
-            option.textContent = folderName;
+            option.value = folder.id;          // Stores the hidden Drive ID as the value
+            option.textContent = folder.name;  // Displays the live folder name to the user
             select.appendChild(option);
         });
+
+        // Update your dropdown change trigger (if it's inline in your HTML) to pass 'this.value'
+        // Example inline look: <select id="folderSelect" onchange="loadFiles(this.value)">
     }
 
-    // Ping Google Apps Script back-end logic to search files
-    function loadFiles(folderName) {
-        if (!folderName) return;
+    // Ping Google Apps Script back-end logic to search files using the Folder ID
+    function loadFiles(folderId) {
+        if (!folderId) return;
         
         const container = document.getElementById('linksContainer');
         container.innerHTML = '<div class="no-files">Loading library files...</div>';
 
-        fetch(`${WEB_APP_URL}?action=getFiles&folderName=${encodeURIComponent(folderName)}`)
+        // Changed 'folderName' parameter to 'folderId' to match the updated Apps Script backend
+        fetch(`${WEB_APP_URL}?action=getFiles&folderId=${encodeURIComponent(folderId)}`)
             .then(response => response.json())
             .then(files => displayFiles(files))
             .catch(error => {
@@ -304,5 +308,6 @@
         });
     }
 </script>
+
 </body>
 </html>
