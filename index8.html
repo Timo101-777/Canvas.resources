@@ -1,1 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Folders 008</title>
+    <style>
+        /* Real-time Search Input Wrapper Layout */
+        .search-wrapper {
+            margin-bottom: 24px;
+            position: relative;
+        }
+        .search-input {
+            width: 100%;
+            box-sizing: border-box;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 14px 16px 14px 44px; /* Space on left for magnifier icon */
+            font-size: 15px;
+            border-radius: 12px;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+        .search-input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15);
+        }
+        /* Magnifying Glass Icon Anchor Graphic */
+        .search-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            pointer-events: none;
+            width: 16px;
+            height: 16px;
+        }
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-color: #f8fafc;
+            --text-muted: #94a3b8;
+            --primary-color: #38bdf8;
+            --border-color: #334155;
+        }
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container { width: 100%; max-width: 650px; }
+        header { text-align: center; margin-bottom: 32px; }
+        h1 { font-size: 28px; margin-bottom: 8px; color: #fff; letter-spacing: -0.5px; }
+        p { color: var(--text-muted); margin: 0; margin-bottom: 24px; }
+        
+        /* Stylized Dark Menu Selector */
+        .select-wrapper {
+            margin-bottom: 32px;
+            text-align: left;
+        }
+        .select-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: block;
+            margin-bottom: 8px;
+        }
+        select {
+            width: 100%;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 12px 16px;
+            font-size: 15px;
+            border-radius: 12px;
+            outline: none;
+            cursor: pointer;
+            transition: border-color 0.2s;
+            appearance: none; /* Removes default native arrow browser styling */
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://w3.org' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            background-size: 16px;
+        }
+        select:focus {
+            border-color: var(--primary-color);
+        }
 
+        .links-list { display: flex; flex-direction: column; gap: 12px; }
+        
+        .file-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.2s ease;
+        }
+        .file-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--primary-color);
+            box-shadow: 0 12px 20px -10px rgba(56, 189, 248, 0.15);
+        }
+        .file-info { display: flex; align-items: center; gap: 16px; }
+        .file-icon {
+            font-size: 20px;
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--primary-color);
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .file-name { font-weight: 600; font-size: 15px; margin-bottom: 2px; text-align: left; }
+        .file-meta { font-size: 13px; color: var(--text-muted); text-align: left; }
+        .action-btn {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-weight: 500;
+            font-size: 13px;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        .file-card:hover .action-btn {
+            background-color: var(--primary-color);
+            color: #0f172a;
+        }
+        .no-files { text-align: center; color: var(--text-muted); padding: 32px; border: 1px dashed var(--border-color); border-radius: 16px; }
+           .banner-container {
+            width: 100%;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 32px;
+            padding: 40px 20px;
+            background-color: #1e293b;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+        }
+        .banner-img {
+            width: 100%;
+            max-width: 420px;
+            height: auto;
+            display: block;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <!-- Canvas Church Stylized Branding Header Block -->
+        <div class="banner-container" style="flex-direction: column; gap: 4px; padding: 30px 20px;">
+            <span style="color: #ffffff; font-size: 26px; font-weight: 800; tracking-wide: 1.5px; letter-spacing: 1px; text-transform: uppercase; font-family: 'Montserrat', system-ui, sans-serif;">
+                C A N V A S
+            </span>
+            <span style="color: var(--primary-color); font-size: 16px; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; padding-left: 4px;">
+                C H U R C H
+            </span>
+            <span style="color: var(--primary-color); font-size: 12px; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; padding-left: 4px;">
+                R O C K I N G H A M
+            </span>
+        </div>
+        <h1>Upload Folder 008</h1>
+        <p>Access and download resources.</p>     
+    </header>
+
+    <!-- Folder Menu Section mapped to dark framework UI -->
+    <div class="select-wrapper">
+        <label class="select-label" for="folderSelect">Choose Resource Category</label>
+        <select id="folderSelect" onchange="loadFiles(this.value)">
+            <option value="">Loading categories...</option>
+        </select>
+    </div>
+
+    <!-- Active Target Asset Display Output Container -->
+    <div id="linksContainer" class="links-list">
+        <div class="no-files">Please select a resource category from the dropdown above.</div>
+    </div>
+</div>
+
+<script>
+    window.history.replaceState(null, "", "Canvas.Church.files");
+    // Paste your deployed Google Web App URL here
+    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwh7CXvWq4dktNiudNVF9sVBgnVC4srQxnDeTr0nupgFcuzj0kMsK1rhK158ofZBKmlNQ/exec";
+
+    // Automatically load menu selections when webpage boots up
+    window.onload = function() {
+        const targetUrl = new URL(WEB_APP_URL);
+        targetUrl.searchParams.append("action", "getFolders");
+
+        fetch(targetUrl)
+            .then(response => {
+                if (!response.ok) throw new Error('Network error');
+                return response.json();
+            })
+            .then(folders => populateDropdown(folders))
+            .catch(error => {
+                console.error("Error loading categories:", error);
+                document.getElementById('folderSelect').innerHTML = '<option value="">Failed to load categories</option>';
+            });
+    };
+
+    // Fill the selection input element dynamically
+    function populateDropdown(folders) {
+        const select = document.getElementById('folderSelect');
+        select.innerHTML = '<option value="" disabled selected>-- Select a Folder --</option>';
+        
+        folders.forEach(folder => {
+            const option = document.createElement('option');
+            option.value = folder.id;          // Stores the hidden Drive ID as the value
+            option.textContent = folder.name;  // Displays the live folder name to the user
+            select.appendChild(option);
+        });
+
+        // Update your dropdown change trigger (if it's inline in your HTML) to pass 'this.value'
+        // Example inline look: <select id="folderSelect" onchange="loadFiles(this.value)">
+    }
+
+    // Ping Google Apps Script back-end logic to search files using the Folder ID
+    function loadFiles(folderId) {
+        if (!folderId) return;
+        
+        const container = document.getElementById('linksContainer');
+        container.innerHTML = '<div class="no-files">Loading library files...</div>';
+
+        // Changed 'folderName' parameter to 'folderId' to match the updated Apps Script backend
+        fetch(`${WEB_APP_URL}?action=getFiles&folderId=${encodeURIComponent(folderId)}`)
+            .then(response => response.json())
+            .then(files => displayFiles(files))
+            .catch(error => {
+                console.error("Error loading files:", error);
+                container.innerHTML = '<div class="no-files">Error loading files. Please try again.</div>';
+            });
+    }
+
+    // Process file extension type maps to emoji identifiers
+    function getFileEmoji(mimeType) {
+        if (!mimeType) return '📄';
+        if (mimeType.includes('pdf')) return '📕';
+        if (mimeType.includes('image')) return '🖼️';
+        if (mimeType.includes('spreadsheet') || mimeType.includes('excel')) return '📊';
+        if (mimeType.includes('document') || mimeType.includes('word')) return '📝';
+        if (mimeType.includes('presentation') || mimeType.includes('powerpoint')) return '📉';
+        if (mimeType.includes('audio')) return '🎵';
+        if (mimeType.includes('video')) return '🎥';
+        return '📄';
+    }
+
+    // Clean text type strings for card labels
+    function cleanTypeLabel(mimeType) {
+        if (!mimeType) return 'Unknown';
+        if (mimeType.includes('pdf')) return 'PDF Document';
+        if (mimeType.includes('image')) return 'Image File';
+        if (mimeType.includes('spreadsheet') || mimeType.includes('excel')) return 'Spreadsheet';
+        if (mimeType.includes('document') || mimeType.includes('word')) return 'Word Doc';
+        if (mimeType.includes('presentation') || mimeType.includes('powerpoint')) return 'Presentation';
+        return 'File';
+    }
+
+    // Loop data payload lists into structured file rows
+    function displayFiles(files) {
+        const container = document.getElementById('linksContainer');
+        container.innerHTML = '';
+
+        if (!files || files.length === 0) {
+            container.innerHTML = '<div class="no-files">No files found in this folder yet. Drop some files in Google Drive!</div>';
+            return;
+        }
+
+        files.forEach(file => {
+            const emoji = getFileEmoji(file.type);
+            const label = cleanTypeLabel(file.type);
+            
+            const card = document.createElement('a');
+            card.className = 'file-card';
+            card.href = file.url;
+            card.target = '_blank';
+            
+            card.innerHTML = `
+                <div class="file-info">
+                    <div class="file-icon">${emoji}</div>
+                    <div>
+                        <div class="file-name">${file.name}</div>
+                        <div class="file-meta">${label}</div>
+                    </div>
+                </div>
+                <button class="action-btn">View</button>
+            `;
+            container.appendChild(card);
+        });
+    }
+</script>
+</body>
+</html>
