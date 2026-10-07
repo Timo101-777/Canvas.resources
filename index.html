@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resource Library 001</title>
+    <title>Resource Library Index</title>
     <style>
         /* Real-time Search Input Wrapper Layout */
         .search-wrapper {
@@ -179,7 +179,7 @@
                 R O C K I N G H A M
             </span>
         </div>
-        <h1>Resource Library 001</h1>
+        <h1>Resource Library Index</h1>
         <p>Access and download resources.</p>     
     </header>
 
@@ -200,7 +200,7 @@
 <script>
     window.history.replaceState(null, "", "Canvas.Church.files");
     // Paste your deployed Google Web App URL here
-    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwgLNhXMJIr3o8Rzi57fRP7QgoMknqgRFgRXNtaszs2mlZJEj-Vy3jebsYP0io_ZcckXQ/exec";
+    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzRNy6-dmT5xtBAWoQNDEymff7qi1L_SF_WTcGHjVX0LybgwKhS0C1iorXL_l7i3YgX/exec";
 
     // Automatically load menu selections when webpage boots up
     window.onload = function() {
@@ -224,26 +224,22 @@
         const select = document.getElementById('folderSelect');
         select.innerHTML = '<option value="" disabled selected>-- Select a Folder --</option>';
         
-        folders.forEach(folder => {
+        folders.forEach(folderName => {
             const option = document.createElement('option');
-            option.value = folder.id;          // Stores the hidden Drive ID as the value
-            option.textContent = folder.name;  // Displays the live folder name to the user
+            option.value = folderName;
+            option.textContent = folderName;
             select.appendChild(option);
         });
-
-        // Update your dropdown change trigger (if it's inline in your HTML) to pass 'this.value'
-        // Example inline look: <select id="folderSelect" onchange="loadFiles(this.value)">
     }
 
-    // Ping Google Apps Script back-end logic to search files using the Folder ID
-    function loadFiles(folderId) {
-        if (!folderId) return;
+    // Ping Google Apps Script back-end logic to search files
+    function loadFiles(folderName) {
+        if (!folderName) return;
         
         const container = document.getElementById('linksContainer');
         container.innerHTML = '<div class="no-files">Loading library files...</div>';
 
-        // Changed 'folderName' parameter to 'folderId' to match the updated Apps Script backend
-        fetch(`${WEB_APP_URL}?action=getFiles&folderId=${encodeURIComponent(folderId)}`)
+        fetch(`${WEB_APP_URL}?action=getFiles&folderName=${encodeURIComponent(folderName)}`)
             .then(response => response.json())
             .then(files => displayFiles(files))
             .catch(error => {
