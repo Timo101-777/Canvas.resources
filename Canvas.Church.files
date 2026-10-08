@@ -185,10 +185,9 @@
 
     <!-- Folder Menu Section mapped to dark framework UI -->
     <div class="select-wrapper">
-        <label class="select-label" for="folderSelect">Choose Resource Category</label>
-        <select id="folderSelect" onchange="loadFiles(this.value)">
-            <option value="">Loading categories...</option>
-        </select>
+         <span style="color: var(--primary-color); font-size: 16px; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; padding-left: 4px;">
+                Please Contact Administration for Access
+            </span>
     </div>
 
     <!-- Active Target Asset Display Output Container -->
