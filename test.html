@@ -5,6 +5,102 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administration Index</title>
     <style>
+		/* Base page styling to match your layout */
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        
+        .header-sub {
+            font-size: 12px;
+            letter-spacing: 2px;
+            color: #777;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        h1 {
+            margin-top: 0;
+            font-size: 28px;
+            color: #111;
+        }
+
+        .description {
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .category-select {
+            font-weight: bold;
+            margin-bottom: 25px;
+        }
+
+        /* --- Custom Hover & Copy Layout Elements --- */
+        .link-row {
+            margin-bottom: 12px;
+            font-size: 15px;
+        }
+
+        /* Container that handles the link text and hidden popup label */
+        .copy-container {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        /* Styled web address that blocks blue text highlighting on accidental drag */
+        .copy-container .web-address {
+            color: #0066cc;
+            text-decoration: underline;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        /* Custom black popup label hidden by default */
+        .copy-container .tooltip {
+            visibility: hidden;
+            width: 160px;
+            background-color: #222;
+            color: #fff;
+            text-align: center;
+            border-radius: 4px;
+            padding: 6px 0;
+            position: absolute;
+            z-index: 5;
+            bottom: 125%; /* Positions label precisely above the URL */
+            left: 50%;
+            margin-left: -80px;
+            opacity: 0;
+            transition: opacity 0.2s ease-in-out;
+            font-size: 12px;
+            font-weight: normal;
+        }
+
+        /* Small indicator triangle pointing down from the label */
+        .copy-container .tooltip::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #222 transparent transparent transparent;
+        }
+
+        /* Seamlessly reveals the popup label on mouse hover */
+        .copy-container:hover .tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .footer-note {
+            margin-top: 30px;
+            font-style: italic;
+            color: #666;
+        }
         /* Real-time Search Input Wrapper Layout */
         .search-wrapper {
             margin-bottom: 24px;
@@ -189,7 +285,7 @@
       <span style="font-size: large;"><span><span>&nbsp;&nbsp; &nbsp;</span><span>&nbsp;&nbsp; &nbsp;</span><span>&nbsp;&nbsp; &nbsp;</span><span>&nbsp;&nbsp; &nbsp;</span><span>&nbsp;&nbsp; &nbsp;</span><span>&nbsp;&nbsp; &nbsp;</span><span>&nbsp;&nbsp; &nbsp;</span><span>&nbsp;&nbsp; &nbsp;</span><span>&nbsp;&nbsp; &nbsp;</span><span>&nbsp;&nbsp; &nbsp;</span><span>&nbsp;&nbsp; &nbsp;</span><span>&nbsp;&nbsp; &nbsp;</span><span>&nbsp;&nbsp; &nbsp;</span><span>&nbsp;&nbsp; &nbsp;</span><span>&nbsp;&nbsp; &nbsp;</span><span>&nbsp; &nbsp; 
   <u>
     <b>
-    <span style="color: #fcff01;">Shared-Links</span>
+    <span style="color: #fcff01;">Links</span>
     </b>
   		</u>
   		</span>
@@ -197,49 +293,138 @@
 				</span>
 		  <span style="color: #fcff01;">&nbsp; &nbsp; &nbsp; &nbsp;</span>
 		  <span style="color: #fcff01;">&nbsp; &nbsp; &nbsp; &nbsp;</span>
-</span><p>
-  <span style="font-size: large;"><span>
-    <a href="https://canvasresource.au/index1.html" style="color: #fcff01;" target="_blank">Resource file 001</a><span style="color: #fcff01;">&nbsp;
-    	</span><span style="color: #fcff01;">&nbsp; &nbsp; &nbsp; &nbsp;</span>https://tinyurl.com/2vns8uze</span><span style="color: #fcff01;">&nbsp; &nbsp; &nbsp;
-    <span>&nbsp;
-    	<a href="https://drive.google.com/drive/folders/1iYc-X3gPs2XZa98QLQMnGYjAO-kqR3PG" style="color: #fcff01;" target="_blank">Drive Location</a>
-    		</span>	 
-  				</span>
-					</span></p>
-<p>
-  <span style="color: #fcff01; font-size: large;">
- 	<a href="https://canvasresource.au/index2.html" style="color: #fcff01;" target="_blank">Resource file 002</a>
-    <span>&nbsp;&nbsp; &nbsp;</span>&nbsp; &nbsp; &nbsp;</span><span style="font-size: large;">https://tinyurl.com/334jwznk</span><span style="color: #fcff01; font-size: large;">&nbsp; &nbsp;&nbsp;
-    	<a href="https://drive.google.com/drive/folders/14OaJUe8LyTFVuMsgtreexf5lChQAGQr4" style="color: #fcff01;" target="_blank">Drive Location</a></span></p>
-<p>
-  <span style="font-size: large;">
-    <a href="https://canvasresource.au/index3.html" style="color: #fcff01;">Resource file 003</a><span style="color: #fcff01;">&nbsp;
-    	</span><span style="color: #fcff01;">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span>https://tinyurl.com/2z9fkhau</span><span style="color: #fcff01; font-size: large;">&nbsp; &nbsp; &nbsp;
-    	<a href="https://drive.google.com/drive/folders/1M75mrsIQ-wkvAtKBuLYvaqr-wrIjd8yY" style="color: #fcff01;" target="_blank">Drive Location</a></span></p>
-<p>
-  <span style="font-size: large;">
-    <span><a href="https://canvasresource.au/index4.html" style="color: #fcff01;" target="_blank">Resource file 004<span>&nbsp; &nbsp;</span></a><span style="color: #fcff01;">&nbsp; &nbsp; &nbsp;&nbsp;</span><span style="color: #fcff01;">&nbsp;</span>https://tinyurl.com/3eswzwc5<span style="color: #fcff01;">&nbsp; &nbsp;&nbsp;&nbsp; </span></span>
-    <span style="color: #fcff01;"><a href="https://drive.google.com/drive/folders/10KzER6tA-QyPyLWStLk6PtGK61KFeHge" style="color: #fcff01;" target="_blank">Drive Location</a></span>
-  </span></p>
-<p>
-  <span style="font-size: large;">
-    <span><a href="https://canvasresource.au/index5.html" style="color: #fcff01;" target="_blank">Resource file 005</a><span style="color: #fcff01;">&nbsp;</span><span style="color: #fcff01;">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span>
-https://tinyurl.com/47j9as62<span style="color: #fcff01;">&nbsp; &nbsp; &nbsp; &nbsp; </span></span>
-    <span style="color: #fcff01;"><a href="https://drive.google.com/drive/folders/15HwEj_jN7wvOGkMQSW4iqZJBs7dNGHg8" style="color: #fcff01;" target="_blank">Drive Location</a></span></span></p>
-<p>
-  <span style="font-size: large;">
-    <span><a href="https://canvasresource.au/index6.html" style="color: #fcff01;" target="_blank">Resource file 006</a><span style="color: #fcff01;">&nbsp;</span><span style="color: #fcff01;">&nbsp; &nbsp; </span><span style="color: #fcff01;">&nbsp; &nbsp; &nbsp;</span>https://tinyurl.com/47j9as62<span style="color: #fcff01;">&nbsp; &nbsp; &nbsp; &nbsp; </span></span>
-    <span style="color: #fcff01;"><a href="https://drive.google.com/drive/folders/1CQYiVDfNL_rPUxiZ_z0T-y2VniGuuPM6" style="color: #fcff01;" target="_blank">Drive Location</a></span></span></p>
-<p>
-  <span style="font-size: large;">
-    <span><a href="https://canvasresource.au/index7.html" style="color: #fcff01;" target="_blank">Resource file 007</a><span style="color: #fcff01;">&nbsp;</span><span style="color: #fcff01;">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span><span style="color: #fcff01;">&nbsp;</span>https://tinyurl.com/3nfe8m2e<span style="color: #fcff01;">&nbsp; &nbsp; &nbsp; &nbsp; </span></span>
-    <span style="color: #fcff01;"><a href="https://drive.google.com/drive/folders/1U9QFY49i0Y0tFtTgGDJauKEeq_N3eyY9" style="color: #fcff01;" target="_blank">Drive Location</a></span></span></p>
-<p><span style="font-size: large;"><span><a href="https://canvasresource.au/index8.html" style="color: #fcff01;" target="_blank">uploads 008</a><span style="color: #fcff01;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span>https://tinyurl.com/259ns3ta<span style="color: #fcff01;">&nbsp; &nbsp; &nbsp; &nbsp; </span></span>
-    <span style="color: #fcff01;"><a href="https://drive.google.com/drive/folders/1xS2RCtGe205XUypB1bTu3D5D5kXe4x7t" style="color: #fcff01;" target="_blank">Drive Location</a></span></span></p>
-<p style="text-align: center;">
-  <span style="color: #fcff01; font-size: large;">
-    <a href="https://drive.google.com/drive/folders/1pcFd2W77IY0qEVAqstIXBM5QMFGFQ6gf" style="color: #fcff01;" target="_blank">Link To Your Shared Google Drive Folders</a></span></p>
-		<div class="links-list" id="linksContainer">
+</span>
+		<!-- Resource Links Block -->
+	 <!-- Resource File Link 01-->
+		<p>	
+  <span style="font-size: large; display: inline-flex; align-items: center; gap: 15px; style="color: #fcff01;">
+       <a href="https://canvasresource.au/index1.html" style="color: #fcff01; text-decoration: none;" target="_blank">Resource file 001</a>
+        </span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+
+<span class="link-row" style="display: inline-block; font-size: large;">
+<span class="copy-container" onclick="copyText(this)" style="cursor: pointer; position: relative;">
+<span class="web-address" data-link="https://tinyurl.com/2vns8uze" style="color: #fcff01;">Link to Page</span>&nbsp; &nbsp; &nbsp;
+<span class="tooltip">Click to copy address</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+
+<a href="https://drive.google.com/drive/folders/1iYc-X3gPs2XZa98QLQMnGYjAO-kqR3PG" style="color: #fcff01; font-size: large; #fcff01;" target="_blank">Drive Location</a>
+</span></span></span>
+
+    </p>
+			<!-- Drive Location Link 01-->
+	        <!-- Resource File Link 02-->
+		<p>	
+  <span style="font-size: large; display: inline-flex; align-items: center; gap: 15px; style="color: #fcff01;">
+       <a href="https://canvasresource.au/index2.html" style="color: #fcff01; text-decoration: none;" target="_blank">Resource file 002</a>
+        </span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+
+<span class="link-row" style="display: inline-block; font-size: large;">
+<span class="copy-container" onclick="copyText(this)" style="cursor: pointer; position: relative;">
+<span class="web-address" data-link="https://tinyurl.com/334jwznk" style="color: #fcff01;">Link to Page</span>&nbsp; &nbsp; &nbsp;
+<span class="tooltip">Click to copy address</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+
+<a href="https://drive.google.com/drive/folders/14OaJUe8LyTFVuMsgtreexf5lChQAGQr4" style="color: #fcff01; font-size: large; #fcff01;" target="_blank">Drive Location</a>
+</span></span></span>
+
+    </p>
+		<!-- Resource File Link 02-->
+		<!-- Resource File Link 03-->
+		<!-- Resource File Link 03-->
+		<p>	
+  <span style="font-size: large; display: inline-flex; align-items: center; gap: 15px; style="color: #fcff01;">
+       <a href="https://canvasresource.au/index3.html" style="color: #fcff01; text-decoration: none;" target="_blank">Resource file 003</a>
+        </span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+
+<span class="link-row" style="display: inline-block; font-size: large;">
+<span class="copy-container" onclick="copyText(this)" style="cursor: pointer; position: relative;">
+<span class="web-address" data-link="https://tinyurl.com/2z9fkhau" style="color: #fcff01;">Link to Page</span>&nbsp; &nbsp; &nbsp;
+<span class="tooltip">Click to copy address</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+
+<a href="https://drive.google.com/drive/folders/1M75mrsIQ-wkvAtKBuLYvaqr-wrIjd8yY" style="color: #fcff01; font-size: large; #fcff01;" target="_blank">Drive Location</a>
+</span></span></span>
+
+    </p>
+
+<!-- Resource File Link 04-->
+		<p>	
+  <span style="font-size: large; display: inline-flex; align-items: center; gap: 15px; style="color: #fcff01;">
+       <a href="https://canvasresource.au/index4.html" style="color: #fcff01; text-decoration: none;" target="_blank">Resource file 004</a>
+        </span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+
+<span class="link-row" style="display: inline-block; font-size: large;">
+<span class="copy-container" onclick="copyText(this)" style="cursor: pointer; position: relative;">
+<span class="web-address" data-link="https://tinyurl.com/3eswzwc5" style="color: #fcff01;">Link to Page</span>&nbsp; &nbsp; &nbsp;
+<span class="tooltip">Click to copy address</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+
+<a href="https://drive.google.com/drive/folders/10KzER6tA-QyPyLWStLk6PtGK61KFeHge" style="color: #fcff01; font-size: large; #fcff01;" target="_blank">Drive Location</a>
+</span></span></span>
+
+    </p
+		<!-- Resource File Link 04-->
+		<!-- Resource File Link 05-->
+		
+<!-- Resource File Link 05-->
+		<p>	
+  <span style="font-size: large; display: inline-flex; align-items: center; gap: 15px; style="color: #fcff01;">
+       <a href="https://canvasresource.au/index5.html" style="color: #fcff01; text-decoration: none;" target="_blank">Resource file 005</a>
+        </span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+
+<span class="link-row" style="display: inline-block; font-size: large;">
+<span class="copy-container" onclick="copyText(this)" style="cursor: pointer; position: relative;">
+<span class="web-address" data-link="https://tinyurl.com/47j9as62" style="color: #fcff01;">Link to Page</span>&nbsp; &nbsp; &nbsp;
+<span class="tooltip">Click to copy address</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+
+<a href="https://drive.google.com/drive/folders/15HwEj_jN7wvOGkMQSW4iqZJBs7dNGHg8" style="color: #fcff01; font-size: large; #fcff01;" target="_blank">Drive Location</a>
+</span></span></span>
+
+    </p>
+
+<!-- Resource File Link 06-->
+		<p>	
+  <span style="font-size: large; display: inline-flex; align-items: center; gap: 15px; style="color: #fcff01;">
+       <a href="https://canvasresource.au/index6.html" style="color: #fcff01; text-decoration: none;" target="_blank">Resource file 006</a>
+        </span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+
+<span class="link-row" style="display: inline-block; font-size: large;">
+<span class="copy-container" onclick="copyText(this)" style="cursor: pointer; position: relative;">
+<span class="web-address" data-link="https://tinyurl.com/3hy5h39t" style="color: #fcff01;">Link to Page</span>&nbsp; &nbsp; &nbsp;
+<span class="tooltip">Click to copy address</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+
+<a href="https://drive.google.com/drive/folders/1CQYiVDfNL_rPUxiZ_z0T-y2VniGuuPM6" style="color: #fcff01; font-size: large; #fcff01;" target="_blank">Drive Location</a>
+</span></span></span>
+
+    </p>
+
+<!-- Resource File Link 07-->
+		<p>	
+  <span style="font-size: large; display: inline-flex; align-items: center; gap: 15px; style="color: #fcff01;">
+       <a href="https://canvasresource.au/index7.html" style="color: #fcff01; text-decoration: none;" target="_blank">Resource file 007</a>
+        </span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+
+<span class="link-row" style="display: inline-block; font-size: large;">
+<span class="copy-container" onclick="copyText(this)" style="cursor: pointer; position: relative;">
+<span class="web-address" data-link="https://tinyurl.com/3nfe8m2e" style="color: #fcff01;">Link to Page</span>&nbsp; &nbsp; &nbsp;
+<span class="tooltip">Click to copy address</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+
+<a href="https://drive.google.com/drive/folders/1xS2RCtGe205XUypB1bTu3D5D5kXe4x7t" style="color: #fcff01; font-size: large; #fcff01;" target="_blank">Drive Location</a>
+</span></span></span>
+
+    </p>
+
+<!-- Resource File Link 08-->
+		<p>	
+  <span style="font-size: large; display: inline-flex; align-items: center; gap: 15px; style="color: #fcff01;">
+       <a href="https://canvasresource.au/index8.html" style="color: #fcff01; text-decoration: none;" target="_blank">Upload file 008</a>
+        </span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+
+<span class="link-row" style="display: inline-block; font-size: large;">
+<span class="copy-container" onclick="copyText(this)" style="cursor: pointer; position: relative;">
+<span class="web-address" data-link="https://tinyurl.com/259ns3ta" style="color: #fcff01;">Link to Page</span>&nbsp; &nbsp; &nbsp;
+<span class="tooltip">Click to copy address</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+
+<a href="https://drive.google.com/drive/folders/1pcFd2W77IY0qEVAqstIXBM5QMFGFQ6gf" style="color: #fcff01; font-size: large; #fcff01;" target="_blank">Drive Location</a>
+</span></span></span>
+
+    </p>
         </div></div>
 </div>
 
@@ -351,5 +536,26 @@ https://tinyurl.com/47j9as62<span style="color: #fcff01;">&nbsp; &nbsp; &nbsp; &
         });
     }
 </script>
+	 <!-- JavaScript logic handling clipboard actions across all elements -->
+    <script>
+        function copyText(container) {
+            // Isolates and reads the raw link stored inside the specific item clicked
+            const addressText = container.querySelector('.web-address').getAttribute('data-link');
+            const tooltip = container.querySelector('.tooltip');
+
+            // Modern asynchronous clipboard action
+            navigator.clipboard.writeText(addressText).then(() => {
+                // Temporarily flips label string to provide live click confirmation
+                tooltip.innerHTML = "Copied!";
+                
+                // Returns tooltip wording to baseline state after a brief delay
+                setTimeout(() => {
+                    tooltip.innerHTML = "Click to copy address";
+                }, 2000);
+            }).catch(err => {
+                console.error('Could not copy link text automatically: ', err);
+            });
+        }
+    </script>
 </body>
 </html>
